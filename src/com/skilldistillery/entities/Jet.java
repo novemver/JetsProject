@@ -3,7 +3,7 @@ package com.skilldistillery.entities;
 import java.text.NumberFormat;
 import java.util.Objects;
 
-public abstract class Jet {
+public class Jet {
 	private String model;
 	private double speed;
 	private int range;
@@ -30,8 +30,8 @@ public abstract class Jet {
 	@Override
 	public String toString() {
 		NumberFormat fmt = NumberFormat.getCurrencyInstance();
-		return "Jet [Model: " + model + ", speed: " + speed + " MPH" + ", range: " + range + " Miles" + ", price: "
-				+ fmt.format(price) + "]";
+		return "Jet Model: " + model + ", speed: " + speed + " MPH" + ", range: " + range + " Miles" + ", price: "
+				+ fmt.format(price);
 	}
 
 	public String getModel() {

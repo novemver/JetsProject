@@ -6,4 +6,7 @@ public class FighterJet extends Jet {
 		super(model, speed, range, price);
 	}
 
+	public void dogFight() {
+	}
+
 }
