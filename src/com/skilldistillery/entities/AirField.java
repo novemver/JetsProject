@@ -73,16 +73,19 @@ public class AirField {
 	}
 
 	public void fastestJet() {
-		double fastest = 0;
+		double fastest = 0.0;
+		double mach = 0.0;
 		String goFaster = null;
 		for (Jet jets : jets) {
 			if (((Jet) jets).getSpeed() > fastest) {
 				fastest = ((Jet) jets).getSpeed();
 
 				goFaster = ((Jet) jets).toString();
+				mach = ((Jet) jets).getSpeedInMach();
 			}
+			 
 		}
-		System.out.println("Fastest Jet: " + goFaster + " Mach: " + String.format("%.2f", ((Jet) jets).getSpeedInMach()));
+		System.out.println("Fastest Jet: " + goFaster + ", Mach Speed: " + String.format("%.2f",mach));
 	}
 
 	public void mostRange() {
@@ -102,7 +105,7 @@ public class AirField {
 		double flightTime = 0;
 		for (Jet jets : jets) {
 			flightTime = ((Jet) jets).getRange() / ((Jet) jets).getSpeed();
-			System.out.println(jets + " Flight Time: " + String.format("%.2f", flightTime) + " Hours at Mach "
+			System.out.println(jets + ", Flight Time: " + String.format("%.2f", flightTime) + " Hours at Mach "
 					+ String.format("%.2f", ((Jet) jets).getSpeedInMach()));
 		}
 	}
@@ -139,7 +142,7 @@ public class AirField {
 	}
 
 	public void jetMenu() {
-		Boolean seeMenu = true;
+		Boolean seeMenu = true;          
 
 		System.out.println("\nWelcome to the JetsApp. Please select an option: ");
 		System.out.println("1. List Fleet ");
@@ -196,6 +199,7 @@ public class AirField {
 		case 10:
 			System.out.println("Quiting JetsApp");
 			scanData.close();
+			
 			seeMenu = false;
 			return;
 

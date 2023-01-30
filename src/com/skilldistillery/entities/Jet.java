@@ -22,7 +22,7 @@ public class Jet {
 		System.out.println("All Jets in the Air. ");
 	}
 
-	public Double getSpeedInMach() {
+	public double getSpeedInMach() {
 		double machSpeed = speed / 761.2;
 		return machSpeed;
 	}

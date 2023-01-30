@@ -50,7 +50,10 @@ public class JetsApp {
 					j = new Bomber(model, speed, range, price);
 					airField.addJet(j);
 				}
+
 			}
+			bufIn.close();
+
 		} catch (IOException e) {
 			System.err.println(e);
 		}
