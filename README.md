@@ -14,6 +14,17 @@ Eclipse, Sublime
 In this program I am practicing accessing data from a .txt file using BufferedReader. 
 I Instantiated an ArrayList and populated it with my .txt file as well as User input and decisions using Scanner. 
 
+The keyword 'implements' is used to declare an interface. 
+
+An interface is a 'contract' or 'promise' that ensures the program acts as intended. 
+The interface says: The methods in the interface WILL be implemented by the implenting Class.
+
+All methods from a class implementing a interface must be called with no arguments in the interface. 
+
+
+
+
+
 
 
 

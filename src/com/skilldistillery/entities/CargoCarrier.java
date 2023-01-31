@@ -3,7 +3,7 @@ package com.skilldistillery.entities;
 public interface CargoCarrier {
 
 	
-public void loadCargoPlane();
+public void loadCargo();
 
 	
 public void unLoadCargo();

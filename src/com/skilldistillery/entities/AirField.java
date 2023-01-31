@@ -11,13 +11,25 @@ import com.skilldistillery.entities.CargoPlane;
 import com.skilldistillery.entities.FighterJet;
 
 public class AirField {
-	List<Jet> jets = new ArrayList<>();
+	private List<Jet> jets = new ArrayList<>();
 	Scanner scanData = new Scanner(System.in);
-
 	public void addJet(Jet jet) {
 		jets.add(jet);
 	}
 
+
+	public void jetRemoval() {
+		System.out.println("Please select from 1 - " + jets.size() + " to remove Jet");
+		int count = 1;
+		for (Jet jet : jets) {
+			System.out.println(count + ". " + jet);
+			count++;
+		}
+		int selectJet = scanData.nextInt();
+		Jet jetGone = jets.remove(selectJet - 1);
+		System.out.println(jetGone.getModel() + " has been reomved from the Air Field.");
+
+	}
 	public void inputJetData() {
 		Jet inputJet;
 		System.out.println("Please select type of Jet to add: \n1. Fighter Jet \n2. Cargo Plane \n3. Bomber");
@@ -58,20 +70,6 @@ public class AirField {
 			System.out.println("Please Try Again");
 		}
 	}
-
-	public void jetRemoval() {
-		System.out.println("Please select from 1 - " + jets.size() + " to remove Jet");
-		int count = 1;
-		for (Jet jet : jets) {
-			System.out.println(count + ". " + jet);
-			count++;
-		}
-		int selectJet = scanData.nextInt();
-		Jet jetGone = jets.remove(selectJet - 1);
-		System.out.println(jetGone.getModel() + " has been reomved from the Air Field.");
-
-	}
-
 	public void fastestJet() {
 		double fastest = 0.0;
 		double mach = 0.0;
@@ -83,9 +81,9 @@ public class AirField {
 				goFaster = ((Jet) jets).toString();
 				mach = ((Jet) jets).getSpeedInMach();
 			}
-			 
+
 		}
-		System.out.println("Fastest Jet: " + goFaster + ", Mach Speed: " + String.format("%.2f",mach));
+		System.out.println("Fastest Jet: " + goFaster + ", Mach Speed: " + String.format("%.2f", mach));
 	}
 
 	public void mostRange() {
@@ -120,7 +118,15 @@ public class AirField {
 	public void loadCargo() {
 		for (Jet js : jets) {
 			if (js instanceof CargoPlane) {
-				System.out.println(((Jet) js).getModel() + " is being loaded with cargo.");
+				((CargoPlane) js).loadCargo();
+			}
+		}
+	}
+	
+	public void unLoadCargo() {
+		for (Jet js : jets) {
+			if (js instanceof CargoPlane) {
+				((CargoPlane) js).unLoadCargo();
 			}
 		}
 	}
@@ -128,7 +134,7 @@ public class AirField {
 	public void bombingMission() {
 		for (Jet js : jets) {
 			if (js instanceof Bomber) {
-				System.out.println(((Jet) js).getModel() + " enroute to Bombing Mission Objective");
+				((Bomber) js).bombingMission();
 			}
 		}
 	}
@@ -136,77 +142,17 @@ public class AirField {
 	public void dogFight() {
 		for (Jet js : jets) {
 			if (js instanceof FighterJet) {
-				System.out.println(((Jet) js).getModel() + " is engaged in Dog Fight!");
+				((FighterJet) js).dogFight();
+			}
+		}
+	}
+	
+	public void airSupport() {
+		for (Jet js : jets) {
+			if (js instanceof FighterJet) {
+				((FighterJet) js).airSupport();
 			}
 		}
 	}
 
-	public void jetMenu() {
-		Boolean seeMenu = true;          
-
-		System.out.println("\nWelcome to the JetsApp. Please select an option: ");
-		System.out.println("1. List Fleet ");
-		System.out.println("2. Fly all Jets ");
-		System.out.println("3. View fastest Jet ");
-		System.out.println("4. View Jet with longest range ");
-		System.out.println("5. Load Cargo Jets ");
-		System.out.println("6. DogFight! ");
-		System.out.println("7. Bombing Mission ");
-		System.out.println("8. Add a Jet to Fleet ");
-		System.out.println("9. Remove a Jet from Fleet ");
-		System.out.println("10. Quit ");
-
-		int choice = scanData.nextInt();
-		switch (choice) {
-		case 1:
-			printJets();
-			jetMenu();
-			break;
-		case 2:
-			fly();
-			jetMenu();
-			break;
-		case 3:
-			fastestJet();
-			jetMenu();
-			break;
-		case 4:
-			mostRange();
-			jetMenu();
-			break;
-		case 5:
-			loadCargo();
-
-			jetMenu();
-			break;
-		case 6:
-			dogFight();
-			jetMenu();
-			break;
-		case 7:
-			bombingMission();
-			jetMenu();
-			break;
-		case 8:
-
-			inputJetData();
-			jetMenu();
-			break;
-		case 9:
-			jetRemoval();
-			jetMenu();
-			break;
-		case 10:
-			System.out.println("Quiting JetsApp");
-			scanData.close();
-			
-			seeMenu = false;
-			return;
-
-		default:
-			System.out.println("Please select from options 1 - 10");
-			jetMenu();
-			break;
-		}
-	}
 }
